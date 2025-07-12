@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { createCustomer } from "./customerSlice";
+import { useDispatch } from "react-redux";
 
 function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
 
-  function handleClick() {}
+  const dispatch = useDispatch();
+
+  function handleClick() {
+    if (!fullName || !nationalId)
+      return alert("名前と国民IDを入力してください");
+    dispatch(createCustomer(fullName, nationalId));
+  }
 
   return (
     <div>
